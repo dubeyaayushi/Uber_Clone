@@ -16,7 +16,7 @@
       //const p = e.target.password.value;
       e.preventDefault();
        setUserData({
-       username:{
+       fullName:{
          firstName:firstName,
          lastName:lastName
        },
