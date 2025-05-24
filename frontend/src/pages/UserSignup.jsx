@@ -1,28 +1,50 @@
  import React, { useState, useContext } from 'react'
  import { Link } from 'react-router-dom'
- import { UserDataContext } from '../context/UserContext'
+  import { UserDataContext } from '../context/UserContext'
  import { useNavigate } from 'react-router-dom'
  import axios from 'axios'
  
+ //import UserContext from '../context/UserContext'
+
  const UserSignup = () => { 
    const [email, setEmail] = useState('')
    const [password, setPassword] = useState('')
    const [firstName, setfirstName] = useState('')
    const [lastName, setlastName] = useState('')
    const [ userData, setUserData ] = useState ({})
-   //const { userData, setUserData } = useContext(UserDataContext)
+   const navigate = useNavigate();//You want to conditionally route based on some logic.
+   /* You must be inside a <BrowserRouter> for useNavigate to work. */
+  
+   
+   const {user, setUser} = useContext(UserDataContext)
 
-   const submitHandler = (e) => {
+   //const [ userData, setUserData ] = useContext(UserDataContext)
+
+   const submitHandler = async (e) => {
      //const p = e.target.password.value;
      e.preventDefault();
-      setUserData({
-      fullName:{
-        firstName:firstName,
-        lastName:lastName
-      },
-       email:email,
-       password:password
-     })
+
+      //setUserData({
+      const newUser ={
+        fullName:{
+          firstName: firstName,
+          lastName: lastName 
+        },
+        email:email,
+        password:password 
+      }
+    // })
+
+      const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/register`, newUser);
+
+      if(response.status === 201){
+        const data = response.data;
+
+        setUser(data.user)
+          
+        navigate('/home');
+      }
+
      console.log(userData);
      //console.log(email,password)
      setfirstName('')
@@ -77,7 +99,7 @@
  
         <button
         className='bg-[#111] text-white font-semibold mb-6 rounded px-4 py-2 border w-full text-lg placeholder:text-base'
-        >Login</button>
+        >Create Account</button>
  
        <p className='text-center'>Already Have a account ?
        <Link to='/login'className='text-blue-600'>Login Here</Link></p>
