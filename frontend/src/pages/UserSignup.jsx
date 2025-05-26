@@ -18,7 +18,7 @@ const UserSignup = () => {
     setErrorMessage('') // Clear old errors
 
     const newUser = {
-      fullname: {
+       fullname:{
         firstname: firstName,
         lastname: lastName
       },
@@ -29,10 +29,11 @@ const UserSignup = () => {
     try {
       const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/register`, newUser)
 
-      if (response.status === 201) {
+      if (response.status === 200) {
         const data = response.data
         setUser(data.user)
-
+        localStorage.setItem('token', data.token)
+        // Optionally, you can set the user data in context or state
         // Clear form fields
         setFirstName('')
         setLastName('')
