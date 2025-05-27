@@ -28,4 +28,4 @@ const SocketProvider = ({ children }) => {
     );
 };
 
-export default SocketProvider; 
+export default SocketProvider;

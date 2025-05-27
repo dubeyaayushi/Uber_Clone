@@ -29,7 +29,3 @@ const CaptainContext = ({ children }) => {
 };
 
 export default CaptainContext;
-
-
-
-
