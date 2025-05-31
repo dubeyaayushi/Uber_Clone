@@ -48,3 +48,45 @@ const VehiclePanel = (props) => {
 }
 
 export default VehiclePanel
+
+
+
+
+/*✅ What is happening in the VehiclePanel component?
+This React component is used to display options for selecting a vehicle when a user wants to book a ride (like in Uber or Ola). Here's a breakdown:
+
+🚗 UI Sections Inside VehiclePanel:
+1. Close Button (Top Arrow):
+jsx
+Copy
+Edit
+<h5 onClick={() => props.setVehiclePanel(false)}>...</h5>
+Clicking the arrow closes the vehicle selection panel.
+
+props.setVehiclePanel is a function passed as a prop from the parent (Home.jsx) to update state in the parent.
+
+2. Vehicle Options (Car / Moto / Auto):
+Each of these <div>s:
+
+jsx
+Copy
+Edit
+<div onClick={() => {
+  props.setConfirmRidePanel(true)
+  props.selectVehicle('car')
+}} ...>
+When a user clicks on one:
+
+setConfirmRidePanel(true): Shows the next panel to confirm the ride.
+
+selectVehicle('car'): Stores the user's selected vehicle type (car, moto, or auto).
+
+It also displays:
+
+Image of the vehicle
+
+Type & seat capacity
+
+Arrival time
+
+Price → ₹{props.fare.car} (comes from props)*/

@@ -291,3 +291,27 @@ const Home = () => {
 }
 
 export default Home
+
+
+
+
+
+
+
+
+
+
+/* In React, what is useRef() used for?
+useRef() is a React Hook that gives you a way to directly reference a DOM element (like a <div>, <input>, etc.) or store mutable values that don't trigger re-renders.
+
+You're creating two references here:
+
+panelRef: Will point to the main panel that slides up/down when the user clicks on a location input.
+
+panelCloseRef: Will point to the close icon/button (ri-arrow-down-wide-line) that lets the user close the panel.
+
+
+
+*/
+
+
