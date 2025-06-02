@@ -132,3 +132,77 @@ const CaptainHome = () => {
 }
 
 export default CaptainHome
+
+
+/* ✅ Top-Level Functional Summary
+This page is the Captain (Driver) Home screen for your ride-sharing app.
+
+It tracks the captain’s location and sends it to the server via socket.
+
+It receives new ride requests via WebSocket (socket.on('new-ride')) and shows them with an animation.
+
+It confirms a ride, hides the popup, and shows the confirmation panel using GSAP animations.
+
+🧩 Total <div> Count: 7
+Let’s break them down in hierarchical order:
+
+🔵 <div className='h-screen'> (Main parent wrapper)
+📌 Role: The entire page is wrapped inside this. Sets full screen height.
+
+Children: 6 direct child <div>s inside this one.
+
+1️⃣ Topbar <div className='fixed p-6 top-0 flex items-center justify-between w-screen'>
+Role: Shows the Uber logo and logout button at the top.
+
+Children:
+
+Uber logo <img>
+
+<Link> (Logout icon)
+
+2️⃣ Image Section <div className='h-3/5'>
+Role: Shows a full-width top animation/image.
+
+Children:
+
+<img> – background animation of a car driving.
+
+3️⃣ Captain Details Section <div className='h-2/5 p-6'>
+Role: Displays the captain's profile or details.
+
+Children:
+
+<CaptainDetails /> component
+
+4️⃣ Ride Popup Panel (Animated) <div ref={ridePopupPanelRef} ...>
+Role: A sliding panel that shows a new incoming ride.
+
+📦 Uses GSAP to animate it in from bottom (translateY).
+
+Children:
+
+<RidePopUp /> — this shows the incoming ride details, accept/cancel buttons.
+
+5️⃣ Confirm Ride Panel (Animated) <div ref={confirmRidePopupPanelRef} ...>
+Role: After confirming a ride, this panel slides up.
+
+📦 Also animated with GSAP.
+
+Children:
+
+<ConfirmRidePopUp /> — displays confirmed ride details.
+
+6️⃣ (Inside RidePopUp or ConfirmRidePopUp)
+These are nested inside components, so not directly part of this file, but their inner divs are part of the rendered DOM.
+
+📚 Summary Table
+Div Index	Class / Ref	Purpose	Children
+1	h-screen	Wraps entire Captain Home page	6 child divs
+2	fixed p-6 top-0 ...	Top bar (logo + logout)	<img> + <Link>
+3	h-3/5	Animated image section	<img>
+4	h-2/5 p-6	Shows captain info	<CaptainDetails />
+5	ref={ridePopupPanelRef} ...	Slide-in Ride popup panel	<RidePopUp />
+6	ref={confirmRidePopupPanelRef} ...	Slide-in Confirmed ride panel	<ConfirmRidePopUp />
+
+🎬 Animation Summary
+ridePopupPanelRef and confirmRidePopupPanelRef divs slide up/down using GSAP animations depending on boolean states (ridePopupPanel and confirmRidePopupPanel). */
