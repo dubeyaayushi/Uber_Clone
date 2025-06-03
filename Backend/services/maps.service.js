@@ -21,7 +21,43 @@ module.exports.getAddressCoordinate = async (address) => {
         throw error;
     }
 }
+/* 
+✅ Purpose
+getAddressCoordinate(address)
+→ Given a string address like "Taj Mahal, India"
+→ Returns: { ltd: 27.1751, lng: 78.0421 }
 
+
+
+API Call:
+js
+Copy
+Edit
+const response = await axios.get(url);
+Makes a GET request to the Google Maps Geocoding API.
+
+await waits for the response to come back.
+
+
+
+
+Handling the Response:
+js
+Copy
+Edit
+if (response.data.status === 'OK') {
+    const location = response.data.results[0].geometry.location;
+    return {
+        ltd: location.lat,
+        lng: location.lng
+    };
+}
+Checks if the response is valid.
+
+Extracts the latitude and longitude from the first result.
+
+
+ */
 module.exports.getDistanceTime = async (origin, destination) => {
     if (!origin || !destination) {
         throw new Error('Origin and destination are required');
