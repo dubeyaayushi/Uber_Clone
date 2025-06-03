@@ -9,6 +9,24 @@ module.exports.getAddressCoordinate = async (address) => {
         const response = await axios.get(url);
         if (response.data.status === 'OK') {
             const location = response.data.results[ 0 ].geometry.location;
+            /* This line:
+ 
+const location = response.data.results[0].geometry.location;
+is extracting latitude and longitude coordinates from the response of a Google Maps Geocoding API call.
+
+🔍 Context:
+This line comes from code that looks like this:
+
+const response = await axios.get(url);
+if (response.data.status === 'OK') {
+    const location = response.data.results[0].geometry.location;
+}
+🧠 What It Does:
+response.data → is the JSON data returned by Google Maps API.
+
+results[0] → gets the first result (best match for the address).
+
+.geometry.location → contains the latitude and longitude of that result. */
             return {
                 ltd: location.lat,
                 lng: location.lng
