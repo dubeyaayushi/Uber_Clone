@@ -85,3 +85,5 @@ const ConfirmRidePopUp = (props) => {
 }
 
 export default ConfirmRidePopUp
+/* This component is for drivers (captains) — it’s used when they’re about to start a ride that has already been booked by a user.
+To ensure security, the driver has to enter an OTP to start the ride. */

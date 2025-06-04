@@ -45,3 +45,12 @@ const ConfirmRide = (props) => {
 }
 
 export default ConfirmRide
+/* This component shows a ride confirmation panel where the user:
+
+Sees pickup and destination addresses
+
+Views the selected vehicle and its fare
+
+Can confirm the ride by clicking a button
+
+It acts like the last step before the ride is booked.  */

@@ -18,6 +18,7 @@ const Home = () => {
     const [ pickup, setPickup ] = useState('')
     const [ destination, setDestination ] = useState('')
     const [ panelOpen, setPanelOpen ] = useState(false)
+    /* setPanelOpen(true) or setPanelOpen(false) controls whether the location search panel (where you type pickup/destination) is open or closed. */
     const vehiclePanelRef = useRef(null)
     const confirmRidePanelRef = useRef(null)
     const vehicleFoundRef = useRef(null)
@@ -25,6 +26,7 @@ const Home = () => {
     const panelRef = useRef(null)
     const panelCloseRef = useRef(null)
     const [ vehiclePanel, setVehiclePanel ] = useState(false)
+    /* setVehiclePanel(true) shows the vehicle selection panel, where the user picks a car/bike. */
     const [ confirmRidePanel, setConfirmRidePanel ] = useState(false)
     const [ vehicleFound, setVehicleFound ] = useState(false)
     const [ waitingForDriver, setWaitingForDriver ] = useState(false)
@@ -39,18 +41,39 @@ const Home = () => {
 
     const { socket } = useContext(SocketContext)
     const { user } = useContext(UserDataContext)
+    /*  const { socket } = useContext(SocketContext)
+  const { user } = useContext(UserDataContext)
+These two lines use React Context to get access to global data.
+
+SocketContext gives access to the Socket.IO connection, which enables real-time communication between the frontend and backend.
+
+UserDataContext gives access to the currently logged-in user's information, like user._id. */
 
     useEffect(() => {
         socket.emit("join", { userType: "user", userId: user._id })
     }, [ user ])
+/* This runs once when the user logs in or changes.
 
+It sends a message to the backend server through Socket.IO saying:
+
+"Hey, a user has joined! Here's their ID." */
     socket.on('ride-confirmed', ride => {
 
 
         setVehicleFound(false)
         setWaitingForDriver(true)
         setRide(ride)
-    })
+    })/* Listens for a real-time message from the backend that says:
+
+“A captain has accepted the ride.”
+
+When that happens:
+
+It hides the "Looking for Driver" panel.
+
+It shows the "Waiting for Driver to Arrive" panel.
+
+It stores the ride details (pickup, destination, captain, etc.). */
 
     socket.on('ride-started', ride => {
         console.log("ride")
